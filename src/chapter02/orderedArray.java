@@ -1,3 +1,5 @@
+package chapter02;
+
 class OrdArray {
 
 	private long[] a;
