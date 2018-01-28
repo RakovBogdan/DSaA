@@ -99,16 +99,20 @@ class ArrayIns {
 class InsertSortApp {
 
     public static void main(String[] args) {
-        int maxSize = 10;
+        int maxSize = 100_000;
         ArrayIns arr = new ArrayIns(maxSize);
 
         for(int j=0; j<maxSize; j++) {
-            long n = (long)( Math.random() * 10 );
+            long n = (long)( Math.random() * 100000 );
             arr.insert(n);
         }
 
-        arr.display();
-        arr.insertionSortNoDups();
-        arr.display();
+//        arr.display();
+        long startTime = System.nanoTime();
+        arr.insertionSort();
+        long endTime = System.nanoTime();
+        long elapsedTimeMillis = (endTime - startTime) / 1_000_000;
+        System.out.println(elapsedTimeMillis);
+//        arr.display();
     }
 }

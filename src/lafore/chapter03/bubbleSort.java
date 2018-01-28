@@ -75,16 +75,30 @@ class BubbleSortApp {
 
 	public static void main(String[] args) {
 		
-		int maxSize = 15;
+//		int maxSize = 15;
+//		ArrayBub arr = new ArrayBub(maxSize);
+//
+//		for(int j=0; j<10; j++) {
+//			long n = (long)( Math.random() * 10 );
+//			arr.insert(n);
+//		}
+//
+//		arr.display();
+//		arr.oddEvenSort();
+//		arr.display();
+		int maxSize = 100_000;
 		ArrayBub arr = new ArrayBub(maxSize);
-		
-		for(int j=0; j<10; j++) { 
-			long n = (long)( Math.random() * 10 );
+
+		for(int j=0; j<maxSize; j++) {
+			long n = (long)( Math.random() * 100000 );
 			arr.insert(n);
 		}
 
-		arr.display();
-		arr.oddEvenSort();
-		arr.display();
+//        arr.display();
+		long startTime = System.nanoTime();
+		arr.bubbleSort();
+		long endTime = System.nanoTime();
+		long elapsedTimeMillis = (endTime - startTime) / 1_000_000;
+		System.out.println(elapsedTimeMillis);
 	}
 }

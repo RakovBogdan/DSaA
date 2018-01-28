@@ -3,13 +3,13 @@ package lafore.chapter06;
 class DArray {
 
     int nElems = 0;
-    int[] arr;
+    long[] arr;
 
     public DArray(int maxSize) {
-        arr = new int[maxSize];
+        arr = new long[maxSize];
     }
 
-    public void add(int element) {
+    public void add(long element) {
         arr[nElems++] = element;
     }
     
@@ -22,11 +22,11 @@ class DArray {
     }
 
     public void mergeSort() {
-        int[] workspace = new int[nElems];
+        long[] workspace = new long[nElems];
         recMergeSort(workspace, 0, nElems - 1);
     }
 
-    private void recMergeSort(int[] workspace, int lowerBound, int upperBound) {
+    private void recMergeSort(long[] workspace, int lowerBound, int upperBound) {
         if (lowerBound == upperBound) {
             return;
         } else {
@@ -37,7 +37,7 @@ class DArray {
         }
     }
 
-    private void merge(int[] workspace, int lowIndex, int highIndex, int endOfHigh) {
+    private void merge(long[] workspace, int lowIndex, int highIndex, int endOfHigh) {
         int workSpaceIndex = 0;
         int startIndex = lowIndex;
         int lowerBound = highIndex -1;
@@ -86,5 +86,20 @@ public class MergeSortApp {
         dArray.mergeSort();
 
         dArray.display();
+
+        int maxSize = 100_000;
+        DArray arr = new DArray(maxSize);
+
+        for(int j=0; j<maxSize; j++) {
+            long n = (long)( Math.random() * 100000 );
+            arr.add(n);
+        }
+
+        long startTime = System.nanoTime();
+        arr.mergeSort();
+        long endTime = System.nanoTime();
+        long elapsedTimeMillis = (endTime - startTime) / 1_000_000;
+        System.out.println(elapsedTimeMillis);
+//        arr.display();
     }
 }

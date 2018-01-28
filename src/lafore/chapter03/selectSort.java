@@ -48,15 +48,30 @@ class ArraySel {
 class SelectSortApp {
 
 	public static void main(String[] args) {
-		int maxSize = 100000;
+//		int maxSize = 100000;
+//		ArraySel arr = new ArraySel(maxSize);
+//		for(int j=0; j<maxSize; j++) {
+//			long n = (long)( j );
+//			arr.insert(n);
+//		}
+//
+//		//arr.display();
+//		arr.selectionSort();
+//		//arr.display();
+
+		int maxSize = 100_000;
 		ArraySel arr = new ArraySel(maxSize);
-		for(int j=0; j<maxSize; j++) { 
-			long n = (long)( j );
+
+		for(int j=0; j<maxSize; j++) {
+			long n = (long)( Math.random() * 100000 );
 			arr.insert(n);
 		}
 
-		//arr.display();
+//        arr.display();
+		long startTime = System.nanoTime();
 		arr.selectionSort();
-		//arr.display();
+		long endTime = System.nanoTime();
+		long elapsedTimeMillis = (endTime - startTime) / 1_000_000;
+		System.out.println(elapsedTimeMillis);
 	}
 }
