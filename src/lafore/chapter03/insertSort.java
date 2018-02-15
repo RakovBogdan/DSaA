@@ -44,7 +44,7 @@ class ArrayIns {
             a[inner] = temp;
         }
 
-        System.out.println("Comprasions: " + comprasions + ", copies: " + copies);
+        System.out.println("Comparisons: " + comprasions + ", copies: " + copies);
     }
 
     public void insertionSortNoDups() {

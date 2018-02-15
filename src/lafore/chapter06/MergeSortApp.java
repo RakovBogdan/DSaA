@@ -91,7 +91,7 @@ public class MergeSortApp {
         DArray arr = new DArray(maxSize);
 
         for(int j=0; j<maxSize; j++) {
-            long n = (long)( Math.random() * 100000 );
+            long n = (long)( Math.random() * maxSize );
             arr.add(n);
         }
 
