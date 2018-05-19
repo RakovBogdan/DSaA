@@ -118,7 +118,7 @@ class ArrayQuick2 {
 public class QuickSortApp2 {
 
     public static void main(String[] args) {
-        int maxSize = 100_00;
+        int maxSize = 1_900_000;
         ArrayQuick2 arrayQuick2 = new ArrayQuick2(maxSize);
 
         for (int i = 0; i < maxSize; i++) {
