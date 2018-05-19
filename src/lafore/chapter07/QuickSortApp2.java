@@ -118,15 +118,19 @@ class ArrayQuick2 {
 public class QuickSortApp2 {
 
     public static void main(String[] args) {
-        int maxSize = 12;
+        int maxSize = 100_00;
         ArrayQuick2 arrayQuick2 = new ArrayQuick2(maxSize);
 
         for (int i = 0; i < maxSize; i++) {
             arrayQuick2.addElement((long)(Math.random() * maxSize));
         }
 
-        arrayQuick2.display();
+//        arrayQuick2.display();
+        long startTime = System.nanoTime();
         arrayQuick2.quickSort();
-        arrayQuick2.display();
+        long endTime = System.nanoTime();
+        long elapsedTimeMillis = (endTime - startTime) / 1_000_000;
+        System.out.println(elapsedTimeMillis);
+//        arrayQuick2.display();
     }
 }
