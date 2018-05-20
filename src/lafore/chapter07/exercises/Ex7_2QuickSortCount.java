@@ -1,9 +1,12 @@
-package lafore.chapter07;
+package lafore.chapter07.exercises;
 
 class ArrayQuick2 {
 
     private long[] values;
     private int numberOfElements;
+
+    private int copies;
+    private int comparisons;
 
     public ArrayQuick2(int maxSize) {
         this.values = new long[maxSize];
@@ -23,6 +26,7 @@ class ArrayQuick2 {
             System.out.print(value + " ");
         }
         System.out.println();
+        System.out.println("copies: " + copies + ", comparisons: " + comparisons);
     }
 
     public void quickSort() {
@@ -31,6 +35,7 @@ class ArrayQuick2 {
 
     private void recursiveQuickSort(int left, int right) {
         int size = right - left + 1;
+        comparisons++;
         if (size <= 3) {
             sortThreeOrLessPartition(left, right);
         } else {
@@ -45,17 +50,21 @@ class ArrayQuick2 {
 
     private void sortThreeOrLessPartition(int left, int right) {
         int size = right - left + 1;
+        comparisons++;
         if (size <= 1) {
             return;
         }
-        else if (size == 2) {
+        comparisons++;
+        if (size == 2) {
+            comparisons++;
             if (values[left] > values[right]) {
                 swap(left, right);
             }
         }
-        else if (size == 3) {
+        else {
             int center = right - 1;
 
+            comparisons += 3;
             if (values[left] > values[center]) {
                 swap(left, center);
             }
@@ -74,10 +83,16 @@ class ArrayQuick2 {
         int rightIndex = right - 1;
 
         while (true) {
-            while (values[++leftIndex] < pivot) ;
+            while (values[++leftIndex] < pivot) {
+                comparisons++;
+            }
+            comparisons++;
+            while (values[--rightIndex] > pivot) {
+                comparisons++;
+            }
+            comparisons++;
 
-            while (values[--rightIndex] > pivot) ;
-
+            comparisons++;
             if (leftIndex >= rightIndex) {
                 break;
             } else {
@@ -93,6 +108,7 @@ class ArrayQuick2 {
     private long medianOf3Pivot(int left, int right) {
         int median = (left + right) / 2;
 
+        comparisons+=3;
         if (values[left] > values[median]) {
             swap(left, median);
         }
@@ -112,25 +128,23 @@ class ArrayQuick2 {
         long tmp = values[firstIndex];
         values[firstIndex] = values[secondIndex];
         values[secondIndex] = tmp;
+        copies+=3;
     }
 }
 
-public class QuickSortApp2 {
+public class Ex7_2QuickSortCount {
 
     public static void main(String[] args) {
-        int maxSize = 10_000_000;
+        int maxSize = 12;
         ArrayQuick2 arrayQuick2 = new ArrayQuick2(maxSize);
 
-        for (int i = 0; i < maxSize; i++) {
-            arrayQuick2.addElement((long)(Math.random() * maxSize));
+        for (int i = maxSize - 1; i >= 0; i--) {
+            arrayQuick2.addElement(i);
         }
 
-//        arrayQuick2.display();
-        long startTime = System.nanoTime();
+        arrayQuick2.display();
         arrayQuick2.quickSort();
-        long endTime = System.nanoTime();
-        long elapsedTimeMillis = (endTime - startTime) / 1_000_000;
-        System.out.println(elapsedTimeMillis);
-//        arrayQuick2.display();
+        arrayQuick2.display();
     }
 }
+

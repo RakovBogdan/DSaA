@@ -62,7 +62,7 @@ public class ShellSortApp {
 //        arr.shellSort();
 //        arr.display();
 
-        int maxSize = 1_000_000;
+        int maxSize = 10_000_000;
         ArrayForShell array = new ArrayForShell(maxSize);
 
         for (int i = 0; i < maxSize; i++) {
