@@ -57,7 +57,7 @@ class FirstLastList {
 }
 
 
-class LinkQueue {
+public class LinkQueue {
 
     private FirstLastList list;
 
@@ -67,16 +67,12 @@ class LinkQueue {
 
     public void insert(long value) { list.insertLast(value); }
 
-    public long remove() { return list.deleteFirst(); }
+        public long remove() { return list.deleteFirst(); }
 
     public void displayQueue() {
         System.out.print("Queue");
         list.displayList();
     }
-}
-
-
-class LinkQueueApp {
 
     public static void main(String[] args) {
         LinkQueue queue = new LinkQueue();
