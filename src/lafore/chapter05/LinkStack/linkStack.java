@@ -46,33 +46,11 @@ class LinkList {
 }
 
 
-class LinkStack {
-
-    LinkList list = new LinkList();
-
-    public void push(long dData) {
-        list.insertFirst(dData);
-    }
-
-    public long pop() {
-        return list.deleteFirst();
-    }
-
-    public boolean isEmpty() {
-        return list.isEmpty();
-    }
-
-    public void displayStack() {
-        System.out.print("Stack: top -> bottom: ");
-        list.displayList();
-    }
-}
-
 
 class LinkStackApp {
 
     public static void main(String[] args) {
-        LinkStack stack = new LinkStack();
+        Stack stack = new Stack();
         stack.push(20);
         stack.push(40);
         stack.displayStack();

@@ -21,20 +21,23 @@ class RadixSort {
 
         int digitPosition = 1;
         while (maxValue > 0) {
+            int divisor = (int) Math.pow(10, digitPosition);
 
             for (int i = 0; i < arrayToSort.length; i++) {
-                tempArray[getDigit(arrayToSort[i], digitPosition)].insert(arrayToSort[i]);
+                long remainder = arrayToSort[i] % divisor;
+                int digit = (int) remainder / (divisor / 10);
+                tempArray[digit].insert(arrayToSort[i]);
             }
 
             int i = 0;
-            while (i < arrayToSort.length) {
-                for (LinkQueue linkQueue: tempArray) {
-                    while (!linkQueue.isEmpty()) {
-                        arrayToSort[i] = linkQueue.remove();
-                        i++;
-                    }
+
+            for (LinkQueue linkQueue: tempArray) {
+                while (!linkQueue.isEmpty()) {
+                    arrayToSort[i] = linkQueue.remove();
+                    i++;
                 }
             }
+
 
             digitPosition++;
             maxValue /= 10;
@@ -52,17 +55,23 @@ class RadixSort {
 
 public class Ex7_5RadixSort {
     public static void main(String[] args) {
-        int arraySize = 100;
-        long[] array = new long[arraySize];
-        for (int i = 0; i < arraySize; i++) {
-            array[i] = (long) (Math.random() * arraySize);
+        int maxSize = 10_000_000;
+        long[] array = new long[maxSize];
+        for (int i = 0; i < maxSize; i++) {
+            array[i] = (long) (Math.random() * maxSize);
         }
 
-        System.out.println(Arrays.toString(array));
+/*        System.out.println(Arrays.toString(array));
 
         RadixSort.radixSort(array);
 
-        System.out.println(Arrays.toString(array));
+        System.out.println(Arrays.toString(array));*/
+
+        long startTime = System.nanoTime();
+        RadixSort.radixSort(array);
+        long endTime = System.nanoTime();
+        long elapsedTimeMillis = (endTime - startTime) / 1_000_000;
+        System.out.println(elapsedTimeMillis);
 
     }
 }
