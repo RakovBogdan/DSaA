@@ -22,5 +22,8 @@ public class TreeMain {
 
         tree.inOrder();
         tree.displayTree();
+
+        tree.delete(25);
+        tree.displayTree();
     }
 }

@@ -86,7 +86,7 @@ public class Tree {
                 Node successor = getSuccessor(current);
 
                 if (current == root) {
-                    root = current;
+                    root = successor;
                 } else if (isLeftChild) {
                     parent.leftNode = successor;
                 } else {
